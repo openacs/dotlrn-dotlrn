@@ -43,7 +43,15 @@ namespace eval dotlrn_dotlrn {
     ad_proc -public add_applet {
 	community_id
     } {
-	Add the dotlrn applet
+	Add the dotlrn applet to dotlrn - one time init
+    } {
+	return
+    }
+
+    ad_proc -public add_applet_to_community {
+	community_id
+    } {
+	Add the dotlrn applet to a specific community
     } {
 	# No mounting of anything
 
@@ -85,7 +93,17 @@ namespace eval dotlrn_dotlrn {
 	community_id
 	user_id
     } {
-	Add a user to a community
+	Called for one time init when this user is added to dotlrn
+    } {
+	return
+    }
+
+
+    ad_proc -public add_user_to_community {
+	community_id
+	user_id
+    } {
+	Called when a user is added to a spceific dotlrn community
     } {
 	# Get the page_id by callback
 	set page_id [dotlrn_community::get_page_id $community_id $user_id]
