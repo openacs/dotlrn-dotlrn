@@ -117,12 +117,10 @@ namespace eval dotlrn_dotlrn {
 	# Get the portal_id by callback
 	set portal_id [dotlrn_community::get_portal_id $community_id $user_id]
 
-	# Allow user to see the dotlrn forums
-	# nothing for now
-
-	# Make dotlrn DS available to this page
-	dotlrn_portlet::make_self_available $portal_id
-	dotlrn_portlet::add_self_to_page $portal_id $community_id
+        if { [exists_and_not_null $portal_id] } {
+            dotlrn_portlet::make_self_available $portal_id
+            dotlrn_portlet::add_self_to_page $portal_id $community_id
+        }
     }
 
     ad_proc -public remove_user {
