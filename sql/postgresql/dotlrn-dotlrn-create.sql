@@ -169,3 +169,5 @@ end;' language 'plpgsql';
 select inline_0();
 drop function inline_0();
 
+\i dotlrn-members-create.sql
+\i dotlrn-members-staff-create.sql

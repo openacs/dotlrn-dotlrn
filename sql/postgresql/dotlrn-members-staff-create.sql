@@ -156,7 +156,7 @@ begin
     );
 
 	-- Add the binding
-	perform acs_sc_binding__new (
+    perform acs_sc_binding__new (
 	    ''dotlrn_applet'',
 	    ''dotlrn_members_staff''
 	);
