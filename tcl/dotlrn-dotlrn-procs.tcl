@@ -92,31 +92,28 @@ namespace eval dotlrn_dotlrn {
                            -community_id $community_id
         ]
 
-        set type [dotlrn_community::get_community_type_from_community_id \
-                      $community_id
+        set type [dotlrn_community::get_toplevel_community_type_from_community_id \
+            $community_id
         ]
 
-        if {[string equal $type "dotlrn_club"]} {
-
-            # clubs have the "dotlrn members" portlet
-            dotlrn_members_portlet::add_self_to_page \
-                -portal_id $portal_id \
-                -community_id $community_id \
-                -page_name [members_community_default_page]
-                
-        } elseif {[string equal $type "dotlrn_community"] } {
-
-            # subgroups have the "dotlrn members" portlet
-            dotlrn_members_portlet::add_self_to_page \
-                -portal_id $portal_id \
-                -community_id $community_id \
-                -page_name [members_subcomm_default_page]
-            
-        } else {
-            # and class instances have the "dotlrn members staff" portlet
-            dotlrn_members_staff_portlet::add_self_to_page \
-                -portal_id $portal_id \
-                -community_id $community_id
+        switch $type {
+            dotlrn_class_instance {
+                dotlrn_members_staff_portlet::add_self_to_page \
+                    -portal_id $portal_id \
+                    -community_id $community_id
+            }
+            dotlrn_community {
+                dotlrn_members_portlet::add_self_to_page \
+                    -portal_id $portal_id \
+                    -community_id $community_id \
+                    -page_name [members_subcomm_default_page]
+            }
+            default {
+                dotlrn_members_portlet::add_self_to_page \
+                    -portal_id $portal_id \
+                    -community_id $community_id \
+                    -page_name [members_community_default_page]
+            }
         }
 
         #
@@ -203,37 +200,34 @@ namespace eval dotlrn_dotlrn {
 
         set type [dotlrn::get_type_from_portal_id -portal_id $portal_id]
         
-        if {[string equal $type "user"]} {
-
-            # the user portal type, set up the dotlrn-main portlet
-            dotlrn_main_portlet::add_self_to_page \
-                -portal_id $portal_id
-
-            # bail out here since we don't want to add the "subgroups"
-            # portlet to the user's portal
-            return
-
-        } elseif {[string equal $type "dotlrn_club"]} {
-
-            # clubs have the "dotlrn members" portlet
-            dotlrn_members_portlet::add_self_to_page \
-                -portal_id $portal_id \
-                -community_id $community_id \
-                -page_name [members_community_default_page]
-                
-        } elseif {[string equal $type "dotlrn_community"] } {
-
-            # subgroups have the "dotlrn members" portlet
-            dotlrn_members_portlet::add_self_to_page \
-                -portal_id $portal_id \
-                -community_id $community_id \
-                -page_name [members_subcomm_default_page]
-            
-        } else {
-            # and class instances have the "dotlrn members staff" portlet
-            dotlrn_members_staff_portlet::add_self_to_page \
-                -portal_id $portal_id \
-                -community_id $community_id
+        switch $type {
+            user {
+                dotlrn_main_portlet::add_self_to_page -portal_id $portal_id
+                return
+            }
+            dotlrn_community {
+                dotlrn_members_portlet::add_self_to_page \
+                    -portal_id $portal_id \
+                    -community_id $community_id \
+                    -page_name [members_subcomm_default_page]
+            }
+            dotlrn_club {
+                dotlrn_members_portlet::add_self_to_page \
+                    -portal_id $portal_id \
+                    -community_id $community_id \
+                    -page_name [members_community_default_page]
+            }
+            dotlrn_class_instance {
+                dotlrn_members_staff_portlet::add_self_to_page \
+                    -portal_id $portal_id \
+                    -community_id $community_id
+            }
+            default {
+                dotlrn_members_portlet::add_self_to_page \
+                    -portal_id $portal_id \
+                    -community_id $community_id \
+                    -page_name [members_community_default_page]
+            }
         }
 
         add_portlet_helper $portal_id $args
