@@ -48,10 +48,10 @@ namespace eval dotlrn_dotlrn {
 	# No mounting of anything
 
 	# Get the non-member page_id
-	set non_member_page_id [dotlrn_community::get_community_non_members_page_id $community_id]
+	set page_id [dotlrn_community::get_community_non_members_page_id $community_id]
 
 	# Add the element there, too
-	dotlrn_portlet::make_self_available $page_id $community_id
+	dotlrn_portlet::add_self_to_page $page_id $community_id
 
 	return $community_id
     }
