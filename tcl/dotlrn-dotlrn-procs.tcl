@@ -89,7 +89,6 @@ namespace eval dotlrn_dotlrn {
     }
 
     ad_proc -public add_user {
-	community_id
 	user_id
     } {
 	Called for one time init when this user is added to dotlrn
