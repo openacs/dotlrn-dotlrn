@@ -40,7 +40,7 @@ namespace eval dotlrn_members {
     } {
 	Returns the pretty name of the applet
     } {
-	return "Group Members Info"
+	return "[_ dotlrn-dotlrn.Group_Members_Info]"
     }
 
     ad_proc -public my_package_key {

@@ -44,7 +44,7 @@ namespace eval dotlrn_dotlrn {
     ad_proc -public get_pretty_name {
     } {
     } {
-	return "Core DotLRN Applets"
+	return "[_ dotlrn-dotlrn.Core_DotLRN_Applets]"
     }
 
     ad_proc -public my_package_key {
@@ -293,6 +293,4 @@ namespace eval dotlrn_dotlrn {
     } {
         return "Subgroup Info"
     }
-
-
 }

@@ -40,7 +40,7 @@ namespace eval dotlrn_members_staff {
     } {
 	Returns the pretty name of the applet
     } {
-	return "dotLRN Staff List Info"
+	return "[_ dotlrn-dotlrn.lt_dotLRN_Staff_List_Inf]"
     }
 
     ad_proc -public my_package_key {
