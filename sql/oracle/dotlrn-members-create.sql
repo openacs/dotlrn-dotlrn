@@ -1,6 +1,6 @@
 
 --
--- The "dotLRN" applet for dotLRN
+-- The "dotLRN members" applet for dotLRN
 -- copyright 2001, OpenForce
 -- distributed under GPL v2.0
 --
@@ -17,8 +17,8 @@ begin
 	-- create the implementation
 	foo := acs_sc_impl.new (
 		'dotlrn_applet',
-		'dotlrn_dotlrn',
-		'dotlrn_dotlrn'
+		'dotlrn_members',
+		'dotlrn_members'
 	);
 
 	-- add all the hooks
@@ -26,18 +26,18 @@ begin
 	-- GetPrettyName
 	foo := acs_sc_impl.new_alias (
 	       'dotlrn_applet',
-	       'dotlrn_dotlrn',
+	       'dotlrn_members',
 	       'GetPrettyName',
-	       'dotlrn_dotlrn::get_pretty_name',
+	       'dotlrn_members::get_pretty_name',
 	       'TCL'
 	);
 
 	-- AddApplet
 	foo := acs_sc_impl.new_alias (
 	       'dotlrn_applet',
-	       'dotlrn_dotlrn',
+	       'dotlrn_members',
 	       'AddApplet',
-	       'dotlrn_dotlrn::add_applet',
+	       'dotlrn_members::add_applet',
 	       'TCL'
 	);
 
@@ -45,9 +45,9 @@ begin
 	-- AddAppletToCommunity
 	foo := acs_sc_impl.new_alias (
 	       'dotlrn_applet',
-	       'dotlrn_dotlrn',
+	       'dotlrn_members',
 	       'AddAppletToCommunity',
-	       'dotlrn_dotlrn::add_applet_to_community',
+	       'dotlrn_members::add_applet_to_community',
 	       'TCL'
 	);
 
@@ -55,18 +55,18 @@ begin
 	-- RemoveApplet
 	foo := acs_sc_impl.new_alias (
 	       'dotlrn_applet',
-	       'dotlrn_dotlrn',
+	       'dotlrn_members',
 	       'RemoveApplet',
-	       'dotlrn_dotlrn::remove_applet',
+	       'dotlrn_members::remove_applet',
 	       'TCL'
 	);
 
 	-- AddUser
 	foo := acs_sc_impl.new_alias (
 	       'dotlrn_applet',
-	       'dotlrn_dotlrn',
+	       'dotlrn_members',
 	       'AddUser',
-	       'dotlrn_dotlrn::add_user',
+	       'dotlrn_members::add_user',
 	       'TCL'
 	);
 
@@ -74,38 +74,35 @@ begin
 	-- AddUserToCommunity
 	foo := acs_sc_impl.new_alias (
 	       'dotlrn_applet',
-	       'dotlrn_dotlrn',
+	       'dotlrn_members',
 	       'AddUserToCommunity',
-	       'dotlrn_dotlrn::add_user_to_community',
+	       'dotlrn_members::add_user_to_community',
 	       'TCL'
 	);
 
 	-- RemoveUser
 	foo := acs_sc_impl.new_alias (
 	       'dotlrn_applet',
-	       'dotlrn_dotlrn',
+	       'dotlrn_members',
 	       'RemoveUser',
-	       'dotlrn_dotlrn::remove_user',
+	       'dotlrn_members::remove_user',
 	       'TCL'
 	);
 
 	-- RemoveUserFromCommunity
 	foo := acs_sc_impl.new_alias (
 	       'dotlrn_applet',
-	       'dotlrn_dotlrn',
+	       'dotlrn_members',
 	       'RemoveUserFromCommunity',
-	       'dotlrn_dotlrn::remove_user_from_community',
+	       'dotlrn_members::remove_user_from_community',
 	       'TCL'
 	);
 
 	-- Add the binding
 	acs_sc_binding.new (
 	    contract_name => 'dotlrn_applet',
-	    impl_name => 'dotlrn_dotlrn'
+	    impl_name => 'dotlrn_members'
 	);
 end;
 /
 show errors
-
-@dotlrn-members-create.sql
-@dotlrn-members-staff-create.sql
