@@ -94,7 +94,7 @@ namespace eval dotlrn_dotlrn {
 	# nothing for now
 
 	# Make dotlrn DS available to this page
-	dotlrn_portlet::make_self_available $pt_id
+	dotlrn_portlet::make_self_available $page_id
 	dotlrn_portlet::add_self_to_page $page_id $community_id
     }
 
