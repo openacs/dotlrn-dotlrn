@@ -33,6 +33,13 @@ namespace eval dotlrn_dotlrn {
 	return "dotlrn-portlet"
     }
 
+    ad_proc -public get_pretty_name {
+    } {
+	returns the pretty name
+    } {
+	return "dotLRN Community Info"
+    }
+
     ad_proc -public add_applet {
 	community_id
     } {
