@@ -56,12 +56,12 @@ namespace eval dotlrn_dotlrn {
 	# No mounting of anything
 
 	# Non-member page stuff
-	# Get the non-member page_id
-	set page_id [dotlrn_community::get_community_non_members_page_id $community_id]
+	# Get the non-member portal_id
+	set portal_id [dotlrn_community::get_community_non_members_portal_id $community_id]
 
 	# Add the element there, too
-	dotlrn_portlet::make_self_available $page_id
-	dotlrn_portlet::add_self_to_page $page_id $community_id
+	dotlrn_portlet::make_self_available $portal_id
+	dotlrn_portlet::add_self_to_page $portal_id $community_id
 
 	# portal template stuff
 	# get the portal_template_id
@@ -105,15 +105,15 @@ namespace eval dotlrn_dotlrn {
     } {
 	Called when a user is added to a spceific dotlrn community
     } {
-	# Get the page_id by callback
-	set page_id [dotlrn_community::get_page_id $community_id $user_id]
+	# Get the portal_id by callback
+	set portal_id [dotlrn_community::get_portal_id $community_id $user_id]
 
 	# Allow user to see the dotlrn forums
 	# nothing for now
 
 	# Make dotlrn DS available to this page
-	dotlrn_portlet::make_self_available $page_id
-	dotlrn_portlet::add_self_to_page $page_id $community_id
+	dotlrn_portlet::make_self_available $portal_id
+	dotlrn_portlet::add_self_to_page $portal_id $community_id
     }
 
     ad_proc -public remove_user {
@@ -122,17 +122,17 @@ namespace eval dotlrn_dotlrn {
     } {
 	Remove a user from a community
     } {
-	# Get the page_id
-	set page_id [dotlrn_community::get_page_id $community_id $user_id]
+	# Get the portal_id
+	set portal_id [dotlrn_community::get_portal_id $community_id $user_id]
 	
 	# Get the package_id by callback
 	# set package_id [dotlrn_community::get_package_id $community_id]
 
 	# Remove the portal element
-	dotlrn_portlet::remove_self_from_page $page_id $community_id
+	dotlrn_portlet::remove_self_from_page $portal_id $community_id
 
 	# Buh Bye.
-	dotlrn_portlet::make_self_unavailable $page_id
+	dotlrn_portlet::make_self_unavailable $portal_id
 
 	# remove user permissions to see dotlrns
 	# nothing to do here
