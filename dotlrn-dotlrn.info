@@ -19,18 +19,6 @@
         <requires url="dotlrn" version="1.0"/>
         <requires url="dotlrn-portlet" version="0.1a"/>
 
-        <files>
-            <file type="package_spec" path="dotlrn-dotlrn.info"/>
-            <file type="data_model_create" db_type="oracle" path="sql/oracle/dotlrn-dotlrn-create.sql"/>
-            <file type="data_model" db_type="oracle" path="sql/oracle/dotlrn-members-create.sql"/>
-            <file type="data_model" db_type="oracle" path="sql/oracle/dotlrn-members-staff-create.sql"/>
-            <file type="data_model_create" db_type="postgresql" path="sql/postgresql/dotlrn-dotlrn-create.sql"/>
-            <file type="data_model" db_type="postgresql" path="sql/postgresql/dotlrn-members-create.sql"/>
-            <file type="data_model" db_type="postgresql" path="sql/postgresql/dotlrn-members-staff-create.sql"/>
-            <file type="tcl_procs" path="tcl/dotlrn-dotlrn-procs.tcl"/>
-            <file type="tcl_procs" path="tcl/dotlrn-members-procs.tcl"/>
-            <file type="tcl_procs" path="tcl/dotlrn-members-staff-procs.tcl"/>
-        </files>
         <parameters>
         <!-- No version parameters -->
         </parameters>
