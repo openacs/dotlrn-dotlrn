@@ -81,7 +81,9 @@ namespace eval dotlrn_dotlrn {
             -portal_id $admin_portal_id \
             -community_id $community_id
 
-	return $community_id
+        # this is not supposed to return anything, since
+        # any return value here is interpreted as a valid package_id!
+	return
     }
 
     ad_proc -public remove_applet_from_community {
@@ -129,7 +131,8 @@ namespace eval dotlrn_dotlrn {
 	community_id
 	user_id
     } {
-	Remove a user from a community
+	Remove a user from a community. Since this applet is not shown 
+        on a user's portal, no action is required here.	
     } {
     }
 	

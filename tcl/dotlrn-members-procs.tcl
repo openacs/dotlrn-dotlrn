@@ -93,7 +93,9 @@ namespace eval dotlrn_members {
             -page_name $page_name \
             -community_id $community_id
 
-	return $community_id
+        # this is not supposed to return anything, since
+        # any return value here is interpreted as a valid package_id!
+	return
     }
 
     ad_proc -public remove_applet_from_community {
@@ -138,10 +140,28 @@ namespace eval dotlrn_members {
 	community_id
 	user_id
     } {
-	Remove a user from a community
+	Remove a user from a community. Since this applet is not shown 
+        on a user's portal, no action is required here.
     } {
     }
 	
+    ad_proc -public remove_user_from_community {
+        community_id
+        user_id
+    } {
+        Remove a user from a community
+    } {
+        set package_id [dotlrn_community::get_applet_package_id $community_id [applet_key]]
+        set portal_id [dotlrn::get_workspace_portal_id $user_id]
+
+        set args [ns_set create args]
+        ns_set put $args user_id $user_id
+        ns_set put $args community_id $community_id
+        ns_set put $args package_id $package_id
+        set list_args [list $portal_id $args]
+
+        remove_portlet $portal_id $args
+    }
     ad_proc -public add_portlet {
         args
     } {
