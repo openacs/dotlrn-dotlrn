@@ -1,133 +1,165 @@
+--
+--  Copyright (C) 2001, 2002 OpenForce, Inc.
+--
+--  This file is part of dotLRN.
+--
+--  dotLRN is free software; you can redistribute it and/or modify it under the
+--  terms of the GNU General Public License as published by the Free Software
+--  Foundation; either version 2 of the License, or (at your option) any later
+--  version.
+--
+--  dotLRN is distributed in the hope that it will be useful, but WITHOUT ANY
+--  WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+--  FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+--  details.
+--
+
 
 --
 -- The "dotLRN" applet for dotLRN
 -- copyright 2001, OpenForce
 -- distributed under GPL v2.0
 --
--- ported to PG by Ben
+--
 -- ben,arjun@openforce.net
 --
 -- 10/05/2001
 --
+-- ported to pg by dan chak (chak@openforce.net)
+-- 2002-07-08
 
-
+create function inline_0()
+returns integer as '
+declare
+	foo integer;
 begin
 	-- create the implementation
-	select acs_sc_impl__new (
-		'dotlrn_applet',
-		'dotlrn_dotlrn',
-		'dotlrn_dotlrn'
+	foo := acs_sc_impl__new (
+		''dotlrn_applet'',
+		''dotlrn_dotlrn'',
+		''dotlrn_dotlrn''
 	);
 
 	-- add all the hooks
 
 	-- GetPrettyName
-	select acs_sc_impl_alias__new (
-	       'dotlrn_applet',
-	       'dotlrn_dotlrn',
-	       'GetPrettyName',
-	       'dotlrn_dotlrn::get_pretty_name',
-	       'TCL'
+	foo := acs_sc_impl_alias__new (
+	       ''dotlrn_applet'',
+	       ''dotlrn_dotlrn'',
+	       ''GetPrettyName'',
+	       ''dotlrn_dotlrn::get_pretty_name'',
+	       ''TCL''
 	);
 
 	-- AddApplet
-	select acs_sc_impl_alias__new (
-	       'dotlrn_applet',
-	       'dotlrn_dotlrn',
-	       'AddApplet',
-	       'dotlrn_dotlrn::add_applet',
-	       'TCL'
+	foo := acs_sc_impl_alias__new (
+	       ''dotlrn_applet'',
+	       ''dotlrn_dotlrn'',
+	       ''AddApplet'',
+	       ''dotlrn_dotlrn::add_applet'',
+	       ''TCL''
 	);
-
-
-	-- AddAppletToCommunity
-	select acs_sc_impl_alias__new (
-	       'dotlrn_applet',
-	       'dotlrn_dotlrn',
-	       'AddAppletToCommunity',
-	       'dotlrn_dotlrn::add_applet_to_community',
-	       'TCL'
-	);
-
 
 	-- RemoveApplet
-	select acs_sc_impl_alias__new (
-	       'dotlrn_applet',
-	       'dotlrn_dotlrn',
-	       'RemoveApplet',
-	       'dotlrn_dotlrn::remove_applet',
-	       'TCL'
+	foo := acs_sc_impl_alias__new (
+	       ''dotlrn_applet'',
+	       ''dotlrn_dotlrn'',
+	       ''RemoveApplet'',
+	       ''dotlrn_dotlrn::remove_applet'',
+	       ''TCL''
 	);
+
+	-- AddAppletToCommunity
+	foo := acs_sc_impl_alias__new (
+	       ''dotlrn_applet'',
+	       ''dotlrn_dotlrn'',
+	       ''AddAppletToCommunity'',
+	       ''dotlrn_dotlrn::add_applet_to_community'',
+	       ''TCL''
+	);
+
+	-- RemoveAppletFromCommunity
+	foo := acs_sc_impl_alias__new (
+	       ''dotlrn_applet'',
+	       ''dotlrn_dotlrn'',
+	       ''RemoveAppletFromCommunity'',
+	       ''dotlrn_dotlrn::remove_applet_from_community'',
+	       ''TCL''
+	);
+
 
 	-- AddUser
-	select acs_sc_impl_alias__new (
-	       'dotlrn_applet',
-	       'dotlrn_dotlrn',
-	       'AddUser',
-	       'dotlrn_dotlrn::add_user',
-	       'TCL'
-	);
-
-
-	-- AddUserToCommunity
-	select acs_sc_impl_alias__new (
-	       'dotlrn_applet',
-	       'dotlrn_dotlrn',
-	       'AddUserToCommunity',
-	       'dotlrn_dotlrn::add_user_to_community',
-	       'TCL'
+	foo := acs_sc_impl_alias__new (
+	       ''dotlrn_applet'',
+	       ''dotlrn_dotlrn'',
+	       ''AddUser'',
+	       ''dotlrn_dotlrn::add_user'',
+	       ''TCL''
 	);
 
 	-- RemoveUser
-	select acs_sc_impl_alias__new (
-	       'dotlrn_applet',
-	       'dotlrn_dotlrn',
-	       'RemoveUser',
-	       'dotlrn_dotlrn::remove_user',
-	       'TCL'
+	foo := acs_sc_impl_alias__new (
+	       ''dotlrn_applet'',
+	       ''dotlrn_dotlrn'',
+	       ''RemoveUser'',
+	       ''dotlrn_dotlrn::remove_user'',
+	       ''TCL''
+	);
+
+	-- AddUserToCommunity
+	foo := acs_sc_impl_alias__new (
+	       ''dotlrn_applet'',
+	       ''dotlrn_dotlrn'',
+	       ''AddUserToCommunity'',
+	       ''dotlrn_dotlrn::add_user_to_community'',
+	       ''TCL''
 	);
 
 	-- RemoveUserFromCommunity
-	select acs_sc_impl_alias__new (
-	       'dotlrn_applet',
-	       'dotlrn_dotlrn',
-	       'RemoveUserFromCommunity',
-	       'dotlrn_dotlrn::remove_user_from_community',
-	       'TCL'
+	foo := acs_sc_impl_alias__new (
+	       ''dotlrn_applet'',
+	       ''dotlrn_dotlrn'',
+	       ''RemoveUserFromCommunity'',
+	       ''dotlrn_dotlrn::remove_user_from_community'',
+	       ''TCL''
 	);
 
     -- AddPortlet
-    select acs_sc_impl_alias__new (
-        'dotlrn_applet',
-        'dotlrn_dotlrn',
-        'AddPortlet',
-        'dotlrn_dotlrn::add_portlet',
-        'TCL'
+    foo := acs_sc_impl_alias__new (
+        ''dotlrn_applet'',
+        ''dotlrn_dotlrn'',
+        ''AddPortlet'',
+        ''dotlrn_dotlrn::add_portlet'',
+        ''TCL''
     );
 
     -- RemovePortlet
-    select acs_sc_impl_alias__new (
-        'dotlrn_applet',
-        'dotlrn_dotlrn',
-        'RemovePortlet',
-        'dotlrn_dotlrn::remove_portlet',
-        'TCL'
+    foo := acs_sc_impl_alias__new (
+        ''dotlrn_applet'',
+        ''dotlrn_dotlrn'',
+        ''RemovePortlet'',
+        ''dotlrn_dotlrn::remove_portlet'',
+        ''TCL''
     );
 
     -- Clone
-    select acs_sc_impl_alias__new (
-        'dotlrn_applet',
-        'dotlrn_dotlrn',
-        'Clone',
-        'dotlrn_dotlrn::clone',
-        'TCL'
+    foo := acs_sc_impl_alias__new (
+        ''dotlrn_applet'',
+        ''dotlrn_dotlrn'',
+        ''Clone'',
+        ''dotlrn_dotlrn::clone'',
+        ''TCL''
     );
 	-- Add the binding
-	select acs_sc_binding__new (
-	    contract_name => 'dotlrn_applet',
-	    impl_name => 'dotlrn_dotlrn'
+	perform acs_sc_binding__new (
+	    ''dotlrn_applet'',
+	    ''dotlrn_dotlrn''
 	);
-end;
 
-\i dotlrn-members-create.sql
-\i dotlrn-members-staff-create.sql
+	return 0;
+
+end;' language 'plpgsql';
+
+select inline_0();
+drop function inline_0();
+
