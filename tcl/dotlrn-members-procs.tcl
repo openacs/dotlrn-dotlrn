@@ -78,15 +78,11 @@ namespace eval dotlrn_members {
     } {
 	Add the dotlrn applet to a specific community
     } {
-	# Not shown on the Non-member page for a comm
-
 	# portal template stuff
 	set pt_id [dotlrn_community::get_portal_template_id $community_id]
 
-	# set up the DS for the portal template
 	dotlrn_members_portlet::make_self_available $pt_id
 
-        # aks - this should be made into a param
         set community_type [dotlrn_community::get_community_type_from_community_id $community_id]
 
         if {$community_type == "dotlrn_community"} {
@@ -95,11 +91,8 @@ namespace eval dotlrn_members {
             set page_name [get_community_default_page]
         }
 
-        set page_id [portal::get_page_id \
-            -portal_id $pt_id \
-            -page_name $page_name \
-        ]
-
+        ns_log notice "aks2 got here"
+        
         # add the portlet to the correct page for this comm
         set page_id [portal::get_page_id \
             -portal_id $pt_id \

@@ -68,25 +68,14 @@ namespace eval dotlrn_dotlrn {
     } {
 	Add the dotlrn applet to a specific community
     } {
-	# No mounting of anything
-
-	# Non-member page stuff
-	# Get the non-member portal_id
-
-        # aks20 - trying to use dotlrn-static instead of this 
-	#set portal_id [dotlrn_community::get_community_non_members_portal_id $community_id]
-
-	# Add the element there, too
-	#dotlrn_portlet::make_self_available $portal_id
-	#dotlrn_portlet::add_self_to_page $portal_id $community_id
-
-	# portal template stuff
 	# get the portal_template_id
 	set pt_id [dotlrn_community::get_portal_template_id $community_id]
-
-	# set up the DS for the portal template
 	dotlrn_portlet::make_self_available $pt_id
-	dotlrn_portlet::add_self_to_page $pt_id $community_id
+        dotlrn_portlet::add_self_to_page $pt_id $community_id                
+
+        if {[dotlrn_community::dummy_comm_p -community_id $community_id]} {
+            return
+        }
 
 	# set up the DS for the admin page
         set admin_portal_id [dotlrn_community::get_community_admin_portal_id $community_id]
