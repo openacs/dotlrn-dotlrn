@@ -150,6 +150,15 @@ begin
         ''dotlrn_dotlrn::clone'',
         ''TCL''
     );
+
+    foo := acs_sc_impl_alias__new (
+        ''dotlrn_applet'',
+        ''dotlrn_dotlrn'',
+        ''ChangeEventHandler'',
+        ''dotlrn_dotlrn::change_event_handler'',
+        ''TCL''
+    );
+
 	-- Add the binding
 	perform acs_sc_binding__new (
 	    ''dotlrn_applet'',

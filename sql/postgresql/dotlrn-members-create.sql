@@ -145,8 +145,8 @@ begin
     foo := acs_sc_impl_alias__new (
         ''dotlrn_applet'',
         ''dotlrn_members'',
-        ''Clone'',
-        ''dotlrn_members::clone'',
+        ''ChangeEventHandler'',
+        ''dotlrn_members::change_event_handler'',
         ''TCL''
     );
 
