@@ -23,6 +23,15 @@ begin
 
 	-- add all the hooks
 
+	-- GetPrettyName
+	foo := acs_sc_impl.new_alias (
+	       'dotlrn_applet',
+	       'dotlrn_dotlrn',
+	       'GetPrettyName',
+	       'dotlrn_dotlrn::get_pretty_name',
+	       'TCL'
+	);
+
 	-- AddApplet
 	foo := acs_sc_impl.new_alias (
 	       'dotlrn_applet',
@@ -57,6 +66,12 @@ begin
 	       'RemoveUser',
 	       'dotlrn_dotlrn::remove_user',
 	       'TCL'
+	);
+
+	-- Add the binding
+	foo := acs_sc_binding.new (
+	    contract_name => 'dotlrn_applet',
+	    impl_name => 'dotlrn_dotlrn'
 	);
 end;
 /
