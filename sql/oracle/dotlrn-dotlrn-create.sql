@@ -69,7 +69,7 @@ begin
 	);
 
 	-- Add the binding
-	foo := acs_sc_binding.new (
+	acs_sc_binding.new (
 	    contract_name => 'dotlrn_applet',
 	    impl_name => 'dotlrn_dotlrn'
 	);
