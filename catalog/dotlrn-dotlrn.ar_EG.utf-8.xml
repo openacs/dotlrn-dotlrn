@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<message_catalog package_key="dotlrn-dotlrn" package_version="2.0.3" locale="ar_EG" charset="utf-8">
+<message_catalog package_key="dotlrn-dotlrn" package_version="2.1.0b1" locale="ar_EG" charset="utf-8">
 
   <msg key="Core_DotLRN_Applets">صميمُ برامج دوتلرن المحدودةَ</msg>
   <msg key="Group_Members_Info">معلوماتُ أعضاء المجموعةِ</msg>

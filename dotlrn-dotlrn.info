@@ -7,13 +7,13 @@
     <initial-install-p>f</initial-install-p>
     <singleton-p>t</singleton-p>
     
-    <version name="2.0.3" url="http://openacs.org/repository/download/apm/dotlrn-dotlrn-2.0.3.apm">
+    <version name="2.1.0b2" url="http://openacs.org/repository/download/apm/dotlrn-dotlrn-2.1.0b2.apm">
         <owner url="http://openasc.org">OpenACS</owner>
         <summary>Helper routines for dotLRN applets</summary>
         <release-date>2004-03-10</release-date>
         <vendor url="http://openacs.org">OpenACS</vendor>
 
-        <provides url="dotlrn-dotlrn" version="2.0.3"/>
+        <provides url="dotlrn-dotlrn" version="2.1.0b2"/>
         <requires url="dotlrn" version="1.0"/>
         <requires url="dotlrn-portlet" version="0.1a"/>
 
