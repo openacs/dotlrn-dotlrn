@@ -68,8 +68,7 @@ namespace eval dotlrn_dotlrn {
     } {
 	Add the dotlrn applet to a specific community
     } {
-	# get the portal_template_id
-	set pt_id [dotlrn_community::get_portal_template_id $community_id]
+	set pt_id [dotlrn_community::get_portal_id -community_id $community_id]
 	dotlrn_portlet::make_self_available $pt_id
         dotlrn_portlet::add_self_to_page $pt_id $community_id                
 
@@ -78,7 +77,7 @@ namespace eval dotlrn_dotlrn {
         }
 
 	# set up the DS for the admin page
-        set admin_portal_id [dotlrn_community::get_community_admin_portal_id $community_id]
+        set admin_portal_id [dotlrn_community::get_admin_portal_id -community_id $community_id]
 	dotlrn_admin_portlet::make_self_available $admin_portal_id
 	dotlrn_admin_portlet::add_self_to_page $admin_portal_id $community_id
 
@@ -107,25 +106,17 @@ namespace eval dotlrn_dotlrn {
 	return
     }
 
+    ad_proc -public remove_user {
+        user_id
+    } {
+    } {
+    }
 
     ad_proc -public add_user_to_community {
 	community_id
 	user_id
     } {
 	Called when a user is added to a spceific dotlrn community
-    } {
-	# Get the portal_id by callback
-	set portal_id [dotlrn_community::get_portal_id $community_id $user_id]
-
-        if { [exists_and_not_null $portal_id] } {
-            dotlrn_portlet::make_self_available $portal_id
-            dotlrn_portlet::add_self_to_page $portal_id $community_id
-        }
-    }
-
-    ad_proc -public remove_user {
-        user_id
-    } {
     } {
     }
 
@@ -135,20 +126,6 @@ namespace eval dotlrn_dotlrn {
     } {
 	Remove a user from a community
     } {
-	# Get the portal_id
-	set portal_id [dotlrn_community::get_portal_id $community_id $user_id]
-	
-	# Get the package_id by callback
-	# set package_id [dotlrn_community::get_package_id $community_id]
-
-	# Remove the portal element
-	dotlrn_portlet::remove_self_from_page $portal_id $community_id
-
-	# Buh Bye.
-	dotlrn_portlet::make_self_unavailable $portal_id
-
-	# remove user permissions to see dotlrns
-	# nothing to do here
     }
 	
 }

@@ -79,9 +79,9 @@ namespace eval dotlrn_members {
 	Add the dotlrn applet to a specific community
     } {
 	# portal template stuff
-	set pt_id [dotlrn_community::get_portal_template_id $community_id]
+	set portal_id [dotlrn_community::get_portal_id -community_id $community_id]
 
-	dotlrn_members_portlet::make_self_available $pt_id
+	dotlrn_members_portlet::make_self_available $portal_id
 
         set community_type [dotlrn_community::get_community_type_from_community_id $community_id]
 
@@ -91,17 +91,15 @@ namespace eval dotlrn_members {
             set page_name [get_community_default_page]
         }
 
-        ns_log notice "aks2 got here"
-        
         # add the portlet to the correct page for this comm
         set page_id [portal::get_page_id \
-            -portal_id $pt_id \
+            -portal_id $portal_id \
             -page_name $page_name \
         ]
 
 	dotlrn_members_portlet::add_self_to_page \
                 -page_id $page_id \
-                $pt_id \
+                $portal_id \
                 $community_id
 
 	return $community_id
@@ -123,6 +121,11 @@ namespace eval dotlrn_members {
 	return
     }
 
+    ad_proc -public remove_user {
+        user_id
+    } {
+    } {
+    }
 
     ad_proc -public add_user_to_community {
 	community_id
@@ -132,32 +135,12 @@ namespace eval dotlrn_members {
     } {
     }
 
-    ad_proc -public remove_user {
-        user_id
-    } {
-    } {
-    }
-
     ad_proc -public remove_user_from_community {
 	community_id
 	user_id
     } {
 	Remove a user from a community
     } {
-	# Get the portal_id
-	set portal_id [dotlrn_community::get_portal_id $community_id $user_id]
-	
-	# Get the package_id by callback
-	# set package_id [dotlrn_community::get_package_id $community_id]
-
-	# Remove the portal element
-	dotlrn_members_portlet::remove_self_from_page $portal_id $community_id
-
-	# Buh Bye.
-	dotlrn_members_portlet::make_self_unavailable $portal_id
-
-	# remove user permissions to see dotlrns
-	# nothing to do here
     }
 	
 }

@@ -31,14 +31,6 @@ ad_library {
 
 namespace eval dotlrn_members_staff {
     
-    # aks - don't need this, I think
-    # ad_proc -public package_key {
-    # } {
-    #     get the package_key this applet deals with
-    # } {
-    #     return "dotlrn"
-    # }
-
     ad_proc portal_element_key {
     } {
 	Returns the key for the portal element this applet uses
@@ -65,18 +57,10 @@ namespace eval dotlrn_members_staff {
     } {
 	Add the dotlrn applet to a specific community
     } {
-	# Not shown on the Non-member page for a comm
+	set portal_id [dotlrn_community::get_portal_id -community_id $community_id]
 
-	# portal template stuff
-	set pt_id [dotlrn_community::get_portal_template_id $community_id]
-
-	# set up the DS for the portal template
-	dotlrn_members_staff_portlet::make_self_available $pt_id
-
-        # add the portlet to the first page
-	dotlrn_members_staff_portlet::add_self_to_page $pt_id $community_id
-
-	return $community_id
+	dotlrn_members_staff_portlet::make_self_available $portal_id
+	dotlrn_members_staff_portlet::add_self_to_page $portal_id $community_id
     }
 
     ad_proc -public remove_applet {
@@ -95,6 +79,11 @@ namespace eval dotlrn_members_staff {
 	return
     }
 
+    ad_proc -public remove_user {
+        user_id
+    } {
+    } {
+    }
 
     ad_proc -public add_user_to_community {
 	community_id
@@ -104,32 +93,12 @@ namespace eval dotlrn_members_staff {
     } {
     }
 
-    ad_proc -public remove_user {
-        user_id
-    } {
-    } {
-    }
-
     ad_proc -public remove_user_from_community {
 	community_id
 	user_id
     } {
 	Remove a user from a community
     } {
-	# Get the portal_id
-	set portal_id [dotlrn_community::get_portal_id $community_id $user_id]
-	
-	# Get the package_id by callback
-	# set package_id [dotlrn_community::get_package_id $community_id]
-
-	# Remove the portal element
-	dotlrn_members_staff_portlet::remove_self_from_page $portal_id $community_id
-
-	# Buh Bye.
-	dotlrn_members_staff_portlet::make_self_unavailable $portal_id
-
-	# remove user permissions to see dotlrns
-	# nothing to do here
     }
 	
 }
