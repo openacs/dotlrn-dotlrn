@@ -47,6 +47,13 @@ namespace eval dotlrn_dotlrn {
 	return "Core DotLRN Applets"
     }
 
+    ad_proc -public my_package_key {
+    } {
+        What's my package key?
+    } {
+        return "dotlrn-dotlrn"
+    }
+
     ad_proc -public applet_key {
     } {
     } {
@@ -57,7 +64,7 @@ namespace eval dotlrn_dotlrn {
     } {
 	Add the applet to dotlrn - one time init - must be repeatable!
     } {
-        dotlrn_applet::add_applet_to_dotlrn -applet_key [applet_key]
+        dotlrn_applet::add_applet_to_dotlrn -applet_key [applet_key] -package_key [my_package_key]
     }
 
     ad_proc -public remove_applet {

@@ -45,13 +45,26 @@ namespace eval dotlrn_members {
 	return "Group Members Info"
     }
 
+    ad_proc -public my_package_key {
+    } {
+        What's my package key?
+    } {
+        return "dotlrn-dotlrn"
+    }
+
+    ad_proc -public applet_key {
+    } {
+        What's my package key?
+    } {
+        return dotlrn_members
+    }
+
     ad_proc -public add_applet {
     } {
 	Add the dotlrn applet to dotlrn - one time init - must be repeatable!
     } {
-        dotlrn_applet::add_applet_to_dotlrn -applet_key "dotlrn_members"
+        dotlrn_applet::add_applet_to_dotlrn -applet_key [applet_key] -package_key [my_package_key]
     }
-
 
     ad_proc -public remove_applet {
 	package_id
