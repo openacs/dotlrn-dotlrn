@@ -45,19 +45,14 @@ namespace eval dotlrn_dotlrn {
     } {
 	Add the dotlrn applet
     } {
-	# Callback to get node_id from community
-	# REVISIT this (ben)
-#	set node_id [site_node_id [ad_conn url]]
+	# No mounting of anything
 
-	# create the dotlrn package instance (all in one, I've mounted it)
-#	set package_key [package_key]
-	#set package_id [site_node_mount_application -return package_id $node_id $package_key $package_key $package_key]
+	# Get the non-member page_id
+	set non_member_page_id [dotlrn_community::get_community_non_members_page_id $community_id]
 
-	# set up a forum inside that instance
-	#dotlrn_forum_new -context_id $package_id -short_name "Discussions"
+	# Add the element there, too
+	dotlrn_portlet::make_self_available $page_id $community_id
 
-	# aks - I think we just return the community_id here?
-	# return the package_id
 	return $community_id
     }
 
@@ -91,9 +86,6 @@ namespace eval dotlrn_dotlrn {
 	# nothing for now
 
 	# Make dotlrn DS available to this page
-	dotlrn_portlet::make_self_available $page_id
-
-	# Call the portal element to be added correctly
 	dotlrn_portlet::add_self_to_page $page_id $community_id
     }
 
