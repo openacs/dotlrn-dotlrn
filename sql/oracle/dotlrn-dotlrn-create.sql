@@ -156,5 +156,3 @@ end;
 /
 show errors
 
-@dotlrn-members-create.sql
-@dotlrn-members-staff-create.sql

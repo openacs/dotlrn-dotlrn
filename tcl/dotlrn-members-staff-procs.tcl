@@ -89,13 +89,14 @@ namespace eval dotlrn_members_staff {
     } {
 	Called for one time init when this user is added to dotlrn
     } {
-	return
+        # noop
     }
 
     ad_proc -public remove_user {
         user_id
     } {
     } {
+        # noop
     }
 
     ad_proc -public add_user_to_community {

@@ -91,12 +91,14 @@ namespace eval dotlrn_members {
 	user_id
     } {
     } {
+        # noop
     }
 
     ad_proc -public remove_user {
         user_id
     } {
     } {
+        # noop
     }
 
     ad_proc -public add_user_to_community {
