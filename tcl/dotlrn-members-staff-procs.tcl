@@ -145,8 +145,8 @@ namespace eval dotlrn_members_staff {
         Clone this applet's content from the old community to the new one
     } {
         ns_log notice "** Error in [get_pretty_name] 'clone' not implemented!"
-        ad_return_complaint 1  "Please notifiy the administrator of this error:
-        ** Error in [get_pretty_name]: 'clone' not implemented!"
+#        ad_return_complaint 1  "Please notifiy the administrator of this error:
+#        ** Error in [get_pretty_name]: 'clone' not implemented!"
     }
 	
 }

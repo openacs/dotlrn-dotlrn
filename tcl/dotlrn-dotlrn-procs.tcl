@@ -63,13 +63,20 @@ namespace eval dotlrn_dotlrn {
         dotlrn_applet::add_applet_to_dotlrn -applet_key "dotlrn_dotlrn"
     }
 
+    ad_proc -public remove_applet {
+	package_id
+    } {
+	remove the applet from dotlrn
+    } {
+    }
+
     ad_proc -public add_applet_to_community {
 	community_id
     } {
 	Add the dotlrn applet to a specific community
     } {
-        set portal_id portal_id [dotlrn_community::get_portal_id \
-                                     -community_id $community_id
+        set portal_id [dotlrn_community::get_portal_id \
+                           -community_id $community_id
         ]
         set args [ns_set create args]
         ns_set put $args community_id $community_id
@@ -93,13 +100,6 @@ namespace eval dotlrn_dotlrn {
         ns_set put $args community_id $community_id
 
         dotlrn_dotlrn::remove_portlet $portal_id $args
-    }
-
-    ad_proc -public remove_applet {
-	package_id
-    } {
-	remove the applet from dotlrn
-    } {
     }
 
     ad_proc -public add_user {
@@ -170,7 +170,7 @@ namespace eval dotlrn_dotlrn {
         A helper proc to remove the underlying portlet from the given portal. 
         
         @param portal_id
-        @param args a list-ified array of args defined in remove_applet_from_community
+        @param args ns_set (community_id?)
     } {
         # since this portlet is only added to community portals or portal templates
         # we only need to check for community_id in the ns_set
