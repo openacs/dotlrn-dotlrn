@@ -96,6 +96,32 @@ begin
 	       'TCL'
 	);
 
+    -- AddPortlet
+    select acs_sc_impl_alias__new (
+        'dotlrn_applet',
+        'dotlrn_dotlrn',
+        'AddPortlet',
+        'dotlrn_dotlrn::add_portlet',
+        'TCL'
+    );
+
+    -- RemovePortlet
+    select acs_sc_impl_alias__new (
+        'dotlrn_applet',
+        'dotlrn_dotlrn',
+        'RemovePortlet',
+        'dotlrn_dotlrn::remove_portlet',
+        'TCL'
+    );
+
+    -- Clone
+    select acs_sc_impl_alias__new (
+        'dotlrn_applet',
+        'dotlrn_dotlrn',
+        'Clone',
+        'dotlrn_dotlrn::clone',
+        'TCL'
+    );
 	-- Add the binding
 	select acs_sc_binding__new (
 	    contract_name => 'dotlrn_applet',

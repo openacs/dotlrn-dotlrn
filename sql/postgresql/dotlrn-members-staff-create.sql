@@ -96,9 +96,37 @@ begin
 	       'TCL'
 	);
 
+
+	-- AddUserToCommunity
+	select acs_sc_impl_alias__new (
+	       'dotlrn_applet',
+	       'dotlrn_members_staff',
+	       'AddUserToCommunity',
+	       'dotlrn_members_staff::add_user_to_community',
+	       'TCL'
+	);
+
+	-- RemoveUser
+	select acs_sc_impl_alias__new (
+	       'dotlrn_applet',
+	       'dotlrn_members_staff',
+	       'RemoveUser',
+	       'dotlrn_members_staff::remove_user',
+	       'TCL'
+	);
+
+	-- RemoveUserFromCommunity
+	select acs_sc_impl_alias__new (
+	       'dotlrn_applet',
+	       'dotlrn_members_staff',
+	       'RemoveUserFromCommunity',
+	       'dotlrn_members_staff::remove_user_from_community',
+	       'TCL'
+	);
+
 	-- Add the binding
 	select acs_sc_binding__new (
 	    contract_name => 'dotlrn_applet',
-	    impl_name => 'dotlrn_members_staff'
+	    impl_name => 'dotlrn_members_staff_staff'
 	);
 end;
