@@ -37,7 +37,7 @@ namespace eval dotlrn_dotlrn {
     } {
 	returns the pretty name
     } {
-	return "dotLRN Community Info"
+	return "dotLRN Group Info"
     }
 
     ad_proc -public add_applet {
