@@ -47,11 +47,22 @@ namespace eval dotlrn_dotlrn {
     } {
 	# No mounting of anything
 
+	# Non-member page stuff
 	# Get the non-member page_id
 	set page_id [dotlrn_community::get_community_non_members_page_id $community_id]
 
 	# Add the element there, too
+	dotlrn_portlet::make_self_available $page_id
 	dotlrn_portlet::add_self_to_page $page_id $community_id
+
+	# portal template stuff
+	# get the portal_template_id
+	set pt_id [dotlrn_community::get_portal_template_id $community_id]
+
+	# set up the DS for the portal template
+	dotlrn_portlet::make_self_available $pt_id
+	dotlrn_portlet::add_self_to_page $pt_id $community_id
+
 
 	return $community_id
     }
@@ -78,14 +89,12 @@ namespace eval dotlrn_dotlrn {
     } {
 	# Get the page_id by callback
 	set page_id [dotlrn_community::get_page_id $community_id $user_id]
-	
-	# Get the package_id by callback
-	# set package_id [dotlrn_community::get_package_id $community_id]
 
 	# Allow user to see the dotlrn forums
 	# nothing for now
 
 	# Make dotlrn DS available to this page
+	dotlrn_portlet::make_self_available $pt_id
 	dotlrn_portlet::add_self_to_page $page_id $community_id
     }
 
