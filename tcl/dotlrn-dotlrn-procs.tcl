@@ -41,11 +41,10 @@ namespace eval dotlrn_dotlrn {
     }
 
     ad_proc -public add_applet {
-	community_id
     } {
-	Add the dotlrn applet to dotlrn - one time init
+	Add the dotlrn applet to dotlrn - one time init - must be repeatable!
     } {
-	return
+	return 1
     }
 
     ad_proc -public add_applet_to_community {
