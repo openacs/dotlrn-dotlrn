@@ -51,6 +51,12 @@ namespace eval dotlrn_members {
         return "People"
     }
 
+    ad_proc -public get_subcomm_default_page {} {
+        FIXME Should be a ad_param.
+    } {
+        return "Subgroup Info"
+    }
+
     ad_proc -public add_applet_to_community {
 	community_id
     } {
@@ -64,10 +70,24 @@ namespace eval dotlrn_members {
 	# set up the DS for the portal template
 	dotlrn_members_portlet::make_self_available $pt_id
 
+        # aks - this should be made into a param
+        set community_type [dotlrn_community::get_community_type_from_community_id $community_id]
+
+        if {$community_type == "dotlrn_community"} {
+            set page_name [get_subcomm_default_page]
+        } else {
+            set page_name [get_community_default_page]
+        }
+
+        set page_id [portal::get_page_id \
+            -portal_id $pt_id \
+            -page_name $page_name \
+        ]
+
         # add the portlet to the correct page for this comm
         set page_id [portal::get_page_id \
             -portal_id $pt_id \
-            -page_name [get_community_default_page] \
+            -page_name $page_name \
         ]
 
 	dotlrn_members_portlet::add_self_to_page \
