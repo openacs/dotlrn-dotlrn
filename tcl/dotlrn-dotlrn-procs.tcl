@@ -106,13 +106,13 @@ namespace eval dotlrn_dotlrn {
                 dotlrn_members_portlet::add_self_to_page \
                     -portal_id $portal_id \
                     -community_id $community_id \
-                    -page_name [members_subcomm_default_page]
+                    -page_name [get_default_page $type]
             }
             default {
                 dotlrn_members_portlet::add_self_to_page \
                     -portal_id $portal_id \
                     -community_id $community_id \
-                    -page_name [members_community_default_page]
+                    -page_name [get_default_page $type]
             }
         }
 
@@ -209,13 +209,13 @@ namespace eval dotlrn_dotlrn {
                 dotlrn_members_portlet::add_self_to_page \
                     -portal_id $portal_id \
                     -community_id $community_id \
-                    -page_name [members_subcomm_default_page]
+                    -page_name [get_default_page $type]
             }
             dotlrn_club {
                 dotlrn_members_portlet::add_self_to_page \
                     -portal_id $portal_id \
                     -community_id $community_id \
-                    -page_name [members_community_default_page]
+                    -page_name [get_default_page $type]
             }
             dotlrn_class_instance {
                 dotlrn_members_staff_portlet::add_self_to_page \
@@ -226,7 +226,7 @@ namespace eval dotlrn_dotlrn {
                 dotlrn_members_portlet::add_self_to_page \
                     -portal_id $portal_id \
                     -community_id $community_id \
-                    -page_name [members_community_default_page]
+                    -page_name [get_default_page $type]
             }
         }
 
@@ -279,18 +279,29 @@ namespace eval dotlrn_dotlrn {
     } { 
     }   
 
-    # misc procs
-
-    ad_proc -public members_community_default_page {} {
-        Returns the user default page to add the portlet to. 
-        FIXME Should be a ad_param.
+    ad_proc -private get_default_page { portal_type } {
+        The pretty name of the page to add the portlet to.
     } {
-        return "#dotlrn.club_page_people_title#"
-    }
+        switch $portal_type {
+            user {
+                # Not supposed to be added to user portal, but if anywhere, add on front page
+                set page_name "#dotlrn.user_portal_page_home_title#"
+            }
+            dotlrn_community {
+                set page_name "#dotlrn.subcomm_page_info_title#"
+            }
+            dotlrn_class_instance {
+                # Not supposed to be added to class instance portal, but if anywhere, add on front page
+                set page_name "#dotlrn.class_page_home_title#"
+            }
+            dotlrn_club {
+                set page_name "#dotlrn.club_page_people_title#"
+            }
+            default {
+                ns_log Error "dotlrn-dotlrn applet: Don't know page name to add portlet to for portal type $portal_type"
+            }
+        }
 
-    ad_proc -public members_subcomm_default_page {} {
-        FIXME Should be a ad_param.
-    } {
-        return "#dotlrn.subcomm_page_info_title#"
-    }
+        return $page_name
+    }    
 }
