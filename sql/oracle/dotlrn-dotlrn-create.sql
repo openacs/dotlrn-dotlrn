@@ -41,6 +41,17 @@ begin
 	       'TCL'
 	);
 
+
+	-- AddAppletToCommunity
+	foo := acs_sc_impl.new_alias (
+	       'dotlrn_applet',
+	       'dotlrn_dotlrn',
+	       'AddAppletToCommunity',
+	       'dotlrn_dotlrn::add_applet_to_community',
+	       'TCL'
+	);
+
+
 	-- RemoveApplet
 	foo := acs_sc_impl.new_alias (
 	       'dotlrn_applet',
@@ -56,6 +67,16 @@ begin
 	       'dotlrn_dotlrn',
 	       'AddUser',
 	       'dotlrn_dotlrn::add_user',
+	       'TCL'
+	);
+
+
+	-- AddUserToCommunity
+	foo := acs_sc_impl.new_alias (
+	       'dotlrn_applet',
+	       'dotlrn_dotlrn',
+	       'AddUserToCommunity',
+	       'dotlrn_dotlrn::add_user_to_community',
 	       'TCL'
 	);
 
