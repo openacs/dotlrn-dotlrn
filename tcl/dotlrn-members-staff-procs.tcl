@@ -62,9 +62,7 @@ namespace eval dotlrn_members_staff {
             -portal_id $portal_id \
             -community_id $community_id
 
-        # this is not supposed to return anything, since
-        # any return value here is interpreted as a valid package_id!
-	return
+	return ""
     }
 
     ad_proc -public remove_applet_from_community {
@@ -145,9 +143,6 @@ namespace eval dotlrn_members_staff {
     } {
         Clone this applet's content from the old community to the new one
     } {
-        ns_log notice "** Error in [get_pretty_name] 'clone' not implemented!"
-#        ad_return_complaint 1  "Please notifiy the administrator of this error:
-#        ** Error in [get_pretty_name]: 'clone' not implemented!"
+        return [add_applet_to_community $new_community_id]
     }
-	
 }

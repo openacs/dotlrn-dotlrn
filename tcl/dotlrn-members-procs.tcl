@@ -73,9 +73,7 @@ namespace eval dotlrn_members {
 
         dotlrn_members::add_portlet $portal_id $args
 
-        # this is not supposed to return anything, since
-        # any return value here is interpreted as a valid package_id!
-	return
+	return ""
     }
 
     ad_proc -public remove_applet_from_community {
@@ -172,7 +170,7 @@ namespace eval dotlrn_members {
         Clone this applet's content from the old community to the new one.
         Since there's no data, just add the applet to the clone
     } {
-        dotlrn_members::add_applet_to_community $new_community_id
+        return [dotlrn_members::add_applet_to_community $new_community_id]
     }
 
     #

@@ -134,9 +134,8 @@ namespace eval dotlrn_dotlrn {
 
         dotlrn_dotlrn::add_portlet_helper $portal_id $args
 
-        # this is not supposed to return anything, since
-        # any return value here is interpreted as a valid package_id!
-	return
+        # return the empty string 
+	return ""
     }
 
     ad_proc -public remove_applet_from_community {
@@ -266,7 +265,7 @@ namespace eval dotlrn_dotlrn {
         community.
     } {
         ns_log notice "Cloning: [applet_key]"
-        dotlrn_dotlrn::add_applet_to_community $new_community_id
+        return [add_applet_to_community $new_community_id]
     }
 
 
