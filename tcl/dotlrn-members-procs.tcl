@@ -96,11 +96,19 @@ namespace eval dotlrn_members {
 	return $community_id
     }
 
+    ad_proc -public remove_applet_from_community {
+        community_id
+    } {
+        remove the dotlrn members applet from a specific community
+    } {
+	set portal_id [dotlrn_community::get_portal_id -community_id $community_id]
+	dotlrn_members_portlet::remove_self_from_page -portal_id $portal_id
+    }
+
     ad_proc -public remove_applet {
-	community_id
 	package_id
     } {
-	remove the applet from the community
+	remove the applet from dotlrn
     } {
     }
 

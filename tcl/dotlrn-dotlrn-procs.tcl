@@ -69,7 +69,7 @@ namespace eval dotlrn_dotlrn {
 	Add the dotlrn applet to a specific community
     } {
 	set pt_id [dotlrn_community::get_portal_id -community_id $community_id]
-        dotlrn_portlet::add_self_to_page -portal_id $pt_id -community_id $community_id                
+        dotlrn_portlet::add_self_to_page -portal_id $pt_id -community_id $community_id
 
         if {[dotlrn_community::dummy_comm_p -community_id $community_id]} {
             return
@@ -77,23 +77,30 @@ namespace eval dotlrn_dotlrn {
 
 	# set up the DS for the admin page
         set admin_portal_id [dotlrn_community::get_admin_portal_id -community_id $community_id]
-	dotlrn_admin_portlet::add_self_to_page -portal_id $admin_portal_id -community_id $community_id
+	dotlrn_admin_portlet::add_self_to_page \
+            -portal_id $admin_portal_id \
+            -community_id $community_id
 
 	return $community_id
     }
 
-    ad_proc -public remove_applet {
+    ad_proc -public remove_applet_from_community {
 	community_id
+    } {
+	remove the dotlrn applet from a specific community
+    } {
+        set admin_portal_id [dotlrn_community::get_admin_portal_id -community_id $community_id]
+	dotlrn_admin_portlet::remove_self_from_page -portal_id $admin_portal_id
+
+	set pt_id [dotlrn_community::get_portal_id -community_id $community_id]
+        dotlrn_portlet::remove_self_from_page -portal_id $pt_id
+    }
+
+    ad_proc -public remove_applet {
 	package_id
     } {
-	remove the applet from the community
+	remove the applet from dotlrn
     } {
-	# Remove all instances of the dotlrn portlet! (this is some serious stuff!)
-
-	# Dropping all messages, forums
-
-	# Killing the package
-    
     }
 
     ad_proc -public add_user {
