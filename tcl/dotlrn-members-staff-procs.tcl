@@ -59,7 +59,6 @@ namespace eval dotlrn_members_staff {
     } {
 	set portal_id [dotlrn_community::get_portal_id -community_id $community_id]
 
-	dotlrn_members_staff_portlet::make_self_available $portal_id
 	dotlrn_members_staff_portlet::add_self_to_page $portal_id $community_id
     }
 

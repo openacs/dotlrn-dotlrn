@@ -80,9 +80,6 @@ namespace eval dotlrn_members {
     } {
 	# portal template stuff
 	set portal_id [dotlrn_community::get_portal_id -community_id $community_id]
-
-	dotlrn_members_portlet::make_self_available $portal_id
-
         set community_type [dotlrn_community::get_community_type_from_community_id $community_id]
 
         if {$community_type == "dotlrn_community"} {

@@ -69,7 +69,6 @@ namespace eval dotlrn_dotlrn {
 	Add the dotlrn applet to a specific community
     } {
 	set pt_id [dotlrn_community::get_portal_id -community_id $community_id]
-	dotlrn_portlet::make_self_available $pt_id
         dotlrn_portlet::add_self_to_page $pt_id $community_id                
 
         if {[dotlrn_community::dummy_comm_p -community_id $community_id]} {
@@ -78,7 +77,6 @@ namespace eval dotlrn_dotlrn {
 
 	# set up the DS for the admin page
         set admin_portal_id [dotlrn_community::get_admin_portal_id -community_id $community_id]
-	dotlrn_admin_portlet::make_self_available $admin_portal_id
 	dotlrn_admin_portlet::add_self_to_page $admin_portal_id $community_id
 
 	return $community_id
