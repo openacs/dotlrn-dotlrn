@@ -119,6 +119,12 @@ namespace eval dotlrn_dotlrn {
     }
 
     ad_proc -public remove_user {
+        user_id
+    } {
+    } {
+    }
+
+    ad_proc -public remove_user_from_community {
 	community_id
 	user_id
     } {
