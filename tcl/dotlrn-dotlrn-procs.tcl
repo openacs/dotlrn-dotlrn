@@ -70,6 +70,10 @@ namespace eval dotlrn_dotlrn {
 	dotlrn_portlet::make_self_available $pt_id
 	dotlrn_portlet::add_self_to_page $pt_id $community_id
 
+	# set up the DS for the admin page
+        set admin_portal_id [dotlrn_community::get_community_admin_portal_id $community_id]
+	dotlrn_admin_portlet::make_self_available $admin_portal_id
+	dotlrn_admin_portlet::add_self_to_page $admin_portal_id $community_id
 
 	return $community_id
     }
