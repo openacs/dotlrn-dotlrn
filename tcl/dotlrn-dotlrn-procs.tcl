@@ -90,6 +90,9 @@ namespace eval dotlrn_dotlrn {
 	# Allow user to see the dotlrn forums
 	# nothing for now
 
+	# Make dotlrn DS available to this page
+	dotlrn_portlet::make_self_available $page_id
+
 	# Call the portal element to be added correctly
 	dotlrn_portlet::add_self_to_page $page_id $community_id
     }
@@ -108,6 +111,9 @@ namespace eval dotlrn_dotlrn {
 
 	# Remove the portal element
 	dotlrn_portlet::remove_self_from_page $page_id $community_id
+
+	# Buh Bye.
+	dotlrn_portlet::make_self_unavailable $page_id
 
 	# remove user permissions to see dotlrns
 	# nothing to do here
