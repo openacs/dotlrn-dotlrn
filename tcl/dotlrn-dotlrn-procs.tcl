@@ -53,7 +53,7 @@ namespace eval dotlrn_dotlrn {
     } {
 	returns the pretty name
     } {
-	return "dotLRN Group Info"
+	return "Group Admin and Subgroup Info"
     }
 
     ad_proc -public add_applet {
@@ -68,18 +68,13 @@ namespace eval dotlrn_dotlrn {
     } {
 	Add the dotlrn applet to a specific community
     } {
-	set pt_id [dotlrn_community::get_portal_id -community_id $community_id]
-        dotlrn_portlet::add_self_to_page -portal_id $pt_id -community_id $community_id
+        set portal_id portal_id [dotlrn_community::get_portal_id \
+                                     -community_id $community_id
+        ]
+        set args [ns_set create args]
+        ns_set put $args community_id $community_id
 
-        if {[dotlrn_community::dummy_comm_p -community_id $community_id]} {
-            return
-        }
-
-	# set up the DS for the admin page
-        set admin_portal_id [dotlrn_community::get_admin_portal_id -community_id $community_id]
-	dotlrn_admin_portlet::add_self_to_page \
-            -portal_id $admin_portal_id \
-            -community_id $community_id
+        dotlrn_dotlrn::add_portlet $portal_id $args
 
         # this is not supposed to return anything, since
         # any return value here is interpreted as a valid package_id!
@@ -91,11 +86,13 @@ namespace eval dotlrn_dotlrn {
     } {
 	remove the dotlrn applet from a specific community
     } {
-        set admin_portal_id [dotlrn_community::get_admin_portal_id -community_id $community_id]
-	dotlrn_admin_portlet::remove_self_from_page -portal_id $admin_portal_id
+        set portal_id portal_id [dotlrn_community::get_portal_id \
+                                     -community_id $community_id
+        ]
+        set args [ns_set create args]
+        ns_set put $args community_id $community_id
 
-	set pt_id [dotlrn_community::get_portal_id -community_id $community_id]
-        dotlrn_portlet::remove_self_from_page -portal_id $pt_id
+        dotlrn_dotlrn::remove_portlet $portal_id $args
     }
 
     ad_proc -public remove_applet {
@@ -110,7 +107,6 @@ namespace eval dotlrn_dotlrn {
     } {
 	Called for one time init when this user is added to dotlrn
     } {
-	return
     }
 
     ad_proc -public remove_user {
@@ -137,38 +133,76 @@ namespace eval dotlrn_dotlrn {
     }
 	
     ad_proc -public add_portlet {
+        portal_id
         args
     } {
         A helper proc to add the underlying portlet to the given portal. 
         
-        @param args a list-ified array of args defined in add_applet_to_community
+        @param portal_id 
+        @param args An ns_set of key-value pairs. (community_id?) 
     } {
-        ns_log notice "** Error in [get_pretty_name]: 'add_portlet' not implemented!"
-        ad_return_complaint 1  "Please notifiy the administrator of this error:
-        ** Error in [get_pretty_name]: 'add_portlet' not implemented!"
+        # since this portlet is only added to community portals or portal templates
+        # we only need to check for community_id in the ns_set
+        set community_id [ns_set get $args "community_id"]
+
+        if {![empty_string_p $community_id]} {
+            # portal_id is a community portal 
+            # set up the DS for the admin page
+            set admin_portal_id  [dotlrn_community::get_admin_portal_id \
+                                      -community_id $community_id]
+            dotlrn_admin_portlet::add_self_to_page \
+                -portal_id $admin_portal_id \
+                -community_id $community_id
+        } else {
+            # portal_id is a portal template
+            set community_id 0
+        }
+
+        dotlrn_portlet::add_self_to_page \
+            -portal_id $portal_id \
+            -community_id $community_id
     }
 
     ad_proc -public remove_portlet {
+        portal_id
         args
     } {
         A helper proc to remove the underlying portlet from the given portal. 
         
+        @param portal_id
         @param args a list-ified array of args defined in remove_applet_from_community
     } {
-        ns_log notice "** Error in [get_pretty_name]: 'remove_portlet' not implemented!"
-        ad_return_complaint 1  "Please notifiy the administrator of this error:
-        ** Error in [get_pretty_name]: 'remove_portlet' not implemented!"
+        # since this portlet is only added to community portals or portal templates
+        # we only need to check for community_id in the ns_set
+        set community_id [ns_set get $args "community_id"]
+
+        if {![empty_string_p $community_id]} {
+            # portal_id is a community portal 
+            # set up the DS for the admin page
+            set admin_portal_id  [dotlrn_community::get_admin_portal_id \
+                                      -community_id $community_id]
+            dotlrn_admin_portlet::remove_self_to_page \
+                -portal_id $admin_portal_id \
+                -community_id $community_id
+        } else {
+            # portal_id is a portal template
+            set community_id 0
+        }
+
+        dotlrn_portlet::remove_self_to_page \
+            -portal_id $portal_id \
+            -community_id $community_id
     }
 
     ad_proc -public clone {
         old_community_id
         new_community_id
     } {
-        Clone this applet's content from the old community to the new one
+        Clone this applet's content from the old community to the new one.
+        Since there's no data to copy, just add the applet to the new community.
+        
     } {
-        ns_log notice "** Error in [get_pretty_name] 'clone' not implemented!"
-        ad_return_complaint 1  "Please notifiy the administrator of this error:
-        ** Error in [get_pretty_name]: 'clone' not implemented!"
+        dotlrn_dotlrn::add_applet_to_community $new_community_id
     }
 
 }
