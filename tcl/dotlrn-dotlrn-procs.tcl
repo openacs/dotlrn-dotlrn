@@ -145,11 +145,12 @@ namespace eval dotlrn_dotlrn {
         # we only need to check for community_id in the ns_set
         set community_id [ns_set get $args "community_id"]
 
-        if {![empty_string_p $community_id]} {
+        if {![empty_string_p $community_id] 
+            && ![dotlrn_community::dummy_comm_p -community_id $community_id]} {
             # portal_id is a community portal 
             # set up the DS for the admin page
-            set admin_portal_id  [dotlrn_community::get_admin_portal_id \
-                                      -community_id $community_id]
+            set admin_portal_id [dotlrn_community::get_admin_portal_id \
+                                     -community_id $community_id]
             dotlrn_admin_portlet::add_self_to_page \
                 -portal_id $admin_portal_id \
                 -community_id $community_id
