@@ -59,7 +59,7 @@ namespace eval dotlrn_members_staff {
     } {
 	set portal_id [dotlrn_community::get_portal_id -community_id $community_id]
 
-	dotlrn_members_staff_portlet::add_self_to_page $portal_id $community_id
+	dotlrn_members_staff_portlet::add_self_to_page -portal_id $portal_id -community_id $community_id
     }
 
     ad_proc -public remove_applet {

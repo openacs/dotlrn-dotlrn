@@ -78,26 +78,22 @@ namespace eval dotlrn_members {
     } {
 	Add the dotlrn applet to a specific community
     } {
+        ns_log notice "XXX dotlrn_members::add_applet_to_community community_id is $community_id"
 	# portal template stuff
 	set portal_id [dotlrn_community::get_portal_id -community_id $community_id]
         set community_type [dotlrn_community::get_community_type_from_community_id $community_id]
 
-        if {$community_type == "dotlrn_community"} {
+        if {[string equal $community_type "dotlrn_community"]} {
             set page_name [get_subcomm_default_page]
         } else {
             set page_name [get_community_default_page]
         }
 
-        # add the portlet to the correct page for this comm
-        set page_id [portal::get_page_id \
+        ns_log notice "XXX dotlrn_members::add_applet_to_community portal_id is $portal_id; page_name is $page_name; community_id is $community_id"
+	dotlrn_members_portlet::add_self_to_page \
             -portal_id $portal_id \
             -page_name $page_name \
-        ]
-
-	dotlrn_members_portlet::add_self_to_page \
-                -page_id $page_id \
-                $portal_id \
-                $community_id
+            -community_id $community_id
 
 	return $community_id
     }
