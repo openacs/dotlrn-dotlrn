@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<message_catalog package_key="dotlrn-dotlrn" package_version="2.2.0a1" locale="pt_PT" charset="ISO-8859-1">
+<message_catalog package_key="dotlrn-dotlrn" package_version="2.2.0b2" locale="pt_PT" charset="ISO-8859-1">
 
   <msg key="Core_DotLRN_Applets">Applets do Núcleo do DotLRN</msg>
   <msg key="Group_Members_Info">Informação dos Membros do Grupo</msg>
