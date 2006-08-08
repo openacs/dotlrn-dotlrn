@@ -202,13 +202,13 @@ namespace eval dotlrn_members {
         Returns the user default page to add the portlet to. 
         FIXME Should be a ad_param.
     } {
-        return "People"
+        return "#dotlrn.club_page_people_title#"
     }
 
     ad_proc -public get_subcomm_default_page {} {
         FIXME Should be a ad_param.
     } {
-        return "Subgroup Info"
+        return "#dotlrn.subcomm_page_info_title#"
     }
 
 }
