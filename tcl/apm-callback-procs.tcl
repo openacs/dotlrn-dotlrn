@@ -22,7 +22,7 @@ ad_proc -private dotlrn_dotlrn::apm::after_install {
 
        set group_id [db_string group_id_from_name "
             select group_id from groups where group_name='dotlrn-admin'" -default ""]
-        if {![empty_string_p $group_id] } {
+        if {$group_id ne "" } {
 
         #Admin privs
         #permission::grant \
