@@ -29,7 +29,7 @@ ad_library {
     5. "dotlrn-members-staff" for classi's
 
     @author ben@openforce.net,arjun@openforce.net
-    @version $Id$
+    @cvs-id $Id$
 }
 
 namespace eval dotlrn_dotlrn {
