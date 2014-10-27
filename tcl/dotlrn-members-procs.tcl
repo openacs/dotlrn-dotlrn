@@ -137,13 +137,13 @@ namespace eval dotlrn_members {
         # we only need to check for community_id in the ns_set
         set community_id [ns_set get $args "community_id"]
 
-        if {![empty_string_p $community_id]} {
+        if {$community_id ne ""} {
             # portal_id is a community portal 
             set community_type \
                 [dotlrn_community::get_community_type_from_community_id \
                      $community_id]
             
-            if {[string equal $community_type "dotlrn_community"]} {
+            if {$community_type eq "dotlrn_community"} {
                 set page_name [get_subcomm_default_page]
             } else {
                 set page_name [get_community_default_page]

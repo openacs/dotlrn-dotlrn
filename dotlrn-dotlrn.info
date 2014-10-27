@@ -11,11 +11,12 @@
         <owner url="http://openasc.org">OpenACS</owner>
         <summary>Helper routines for dotLRN applets</summary>
         <release-date>2011-10-30</release-date>
-        <vendor url="http://openacs.org">OpenACS</vendor>
+        <vendor url="http://dotlrn.org">DotLRN Consortium</vendor>
+        <maturity>2</maturity>
 
         <provides url="dotlrn-dotlrn" version="2.9.0d1"/>
-        <requires url="dotlrn" version="2.6.0"/>
-        <requires url="dotlrn-portlet" version="2.6.0"/>
+        <requires url="dotlrn" version="2.9.0d1"/>
+        <requires url="dotlrn-portlet" version="2.9.0d1"/>
 
         <callbacks>
             <callback type="after-install"  proc="dotlrn_dotlrn::apm::after_install"/>
