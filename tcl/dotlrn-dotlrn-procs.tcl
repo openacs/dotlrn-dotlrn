@@ -305,3 +305,9 @@ namespace eval dotlrn_dotlrn {
         return $page_name
     }    
 }
+
+# Local variables:
+#    mode: tcl
+#    tcl-indent-level: 4
+#    indent-tabs-mode: nil
+# End:
