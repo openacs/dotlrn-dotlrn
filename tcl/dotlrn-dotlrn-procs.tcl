@@ -149,7 +149,7 @@ namespace eval dotlrn_dotlrn {
     } {
         ad_return_complaint \
             1 \
-            "[applet_key] remove_applet_from_community not implimented!"
+            "[applet_key] remove_applet_from_community not implemented!"
     }
 
     ad_proc -public add_user {
@@ -254,7 +254,7 @@ namespace eval dotlrn_dotlrn {
         @param portal_id
         @param args
     } {
-        ad_return_complaint 1  "[applet_key] remove_portlet not implimented!"
+        ad_return_complaint 1  "[applet_key] remove_portlet not implemented!"
     }
 
     ad_proc -public clone {
@@ -305,3 +305,9 @@ namespace eval dotlrn_dotlrn {
         return $page_name
     }    
 }
+
+# Local variables:
+#    mode: tcl
+#    tcl-indent-level: 4
+#    indent-tabs-mode: nil
+# End:

@@ -40,3 +40,9 @@ ad_proc -private dotlrn_dotlrn::apm::after_install {
 }
 
 
+
+# Local variables:
+#    mode: tcl
+#    tcl-indent-level: 4
+#    indent-tabs-mode: nil
+# End:
