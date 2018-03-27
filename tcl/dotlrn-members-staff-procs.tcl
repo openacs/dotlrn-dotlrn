@@ -133,7 +133,7 @@ namespace eval dotlrn_members_staff {
         @param args a list-ified array of args defined in add_applet_to_community
     } {
         ns_log notice "** Error in [get_pretty_name]: 'add_portlet' not implemented!"
-        ad_return_complaint 1  "Please notifiy the administrator of this error:
+        ad_return_complaint 1  "Please notify the administrator of this error:
         ** Error in [get_pretty_name]: 'add_portlet' not implemented!"
     }
 
@@ -145,7 +145,7 @@ namespace eval dotlrn_members_staff {
         @param args a list-ified array of args defined in remove_applet_from_community
     } {
         ns_log notice "** Error in [get_pretty_name]: 'remove_portlet' not implemented!"
-        ad_return_complaint 1  "Please notifiy the administrator of this error:
+        ad_return_complaint 1  "Please notify the administrator of this error:
         ** Error in [get_pretty_name]: 'remove_portlet' not implemented!"
     }
 
