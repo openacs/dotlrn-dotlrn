@@ -8,7 +8,7 @@
     <singleton-p>t</singleton-p>
     
     <version name="2.9.1" url="http://openacs.org/repository/download/apm/dotlrn-dotlrn-2.9.1.apm">
-        <owner url="http://openasc.org">OpenACS</owner>
+        <owner url="http://openacs.org">OpenACS</owner>
         <summary>Helper routines for dotLRN applets</summary>
         <release-date>2017-08-06</release-date>
         <vendor url="http://dotlrn.org">DotLRN Consortium</vendor>
