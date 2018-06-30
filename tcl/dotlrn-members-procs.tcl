@@ -21,9 +21,9 @@
 #
 
 ad_library {
-    
+
     Procs to set up the dotLRN "members" applet
-    
+
     @author ben@openforce.net,arjun@openforce.net
 }
 
@@ -31,16 +31,16 @@ namespace eval dotlrn_members {
 
     ad_proc portal_element_key {
     } {
-	Returns the key for the portal element this applet uses
+        Returns the key for the portal element this applet uses
     } {
-	return "dotlrn-members-portlet"
+        return "dotlrn-members-portlet"
     }
 
     ad_proc -public get_pretty_name {
     } {
-	Returns the pretty name of the applet
+        Returns the pretty name of the applet
     } {
-	return "[_ dotlrn-dotlrn.Group_Members_Info]"
+        return "[_ dotlrn-dotlrn.Group_Members_Info]"
     }
 
     ad_proc -public my_package_key {
@@ -59,22 +59,22 @@ namespace eval dotlrn_members {
 
     ad_proc -public add_applet {
     } {
-	Add the dotlrn applet to dotlrn - one time init - must be repeatable!
+        Add the dotlrn applet to dotlrn - one time init - must be repeatable!
     } {
         dotlrn_applet::add_applet_to_dotlrn -applet_key [applet_key] -package_key [my_package_key]
     }
 
     ad_proc -public remove_applet {
-	package_id
+        package_id
     } {
-	remove the applet from dotlrn
+        remove the applet from dotlrn
     } {
     }
 
     ad_proc -public add_applet_to_community {
-	community_id
+        community_id
     } {
-	Add the dotlrn applet to a specific community
+        Add the dotlrn applet to a specific community
     } {
         set portal_id [dotlrn_community::get_portal_id \
                            -community_id $community_id
@@ -84,7 +84,7 @@ namespace eval dotlrn_members {
 
         dotlrn_members::add_portlet $portal_id $args
 
-	return ""
+        return ""
     }
 
     ad_proc -public remove_applet_from_community {
@@ -92,12 +92,12 @@ namespace eval dotlrn_members {
     } {
         remove the dotlrn members applet from a specific community
     } {
-	set portal_id [dotlrn_community::get_portal_id -community_id $community_id]
-        dotlrn_members::remove_portlet $portal_id "" 
+        set portal_id [dotlrn_community::get_portal_id -community_id $community_id]
+        dotlrn_members::remove_portlet $portal_id ""
     }
 
     ad_proc -public add_user {
-	user_id
+        user_id
     } {
     } {
         # noop
@@ -111,15 +111,15 @@ namespace eval dotlrn_members {
     }
 
     ad_proc -public add_user_to_community {
-	community_id
-	user_id
+        community_id
+        user_id
     } {
     } {
     }
 
     ad_proc -public remove_user_from_community {
-	community_id
-	user_id
+        community_id
+        user_id
     } {
     } {
     }
@@ -128,8 +128,8 @@ namespace eval dotlrn_members {
         portal_id
         args
     } {
-        A helper proc to add the underlying portlet to the given portal. 
-        
+        A helper proc to add the underlying portlet to the given portal.
+
         @param portal_id
         @param args ns_set (community_id?)
     } {
@@ -138,11 +138,11 @@ namespace eval dotlrn_members {
         set community_id [ns_set get $args "community_id"]
 
         if {$community_id ne ""} {
-            # portal_id is a community portal 
+            # portal_id is a community portal
             set community_type \
                 [dotlrn_community::get_community_type_from_community_id \
                      $community_id]
-            
+
             if {$community_type eq "dotlrn_community"} {
                 set page_name [get_subcomm_default_page]
             } else {
@@ -157,7 +157,7 @@ namespace eval dotlrn_members {
             set page_name ""
         }
 
-	dotlrn_members_portlet::add_self_to_page \
+        dotlrn_members_portlet::add_self_to_page \
             -portal_id $portal_id \
             -page_name $page_name \
             -community_id $community_id
@@ -168,12 +168,12 @@ namespace eval dotlrn_members {
         portal_id
         args
     } {
-        A helper proc to remove the underlying portlet from the given portal. 
+        A helper proc to remove the underlying portlet from the given portal.
     } {
         # this is simple since there's no admin portlet or portal type stuff to do
         dotlrn_members_portlet::remove_self_from_page -portal_id $portal_id
     }
-    
+
     ad_proc -public clone {
         old_community_id
         new_community_id
@@ -189,17 +189,17 @@ namespace eval dotlrn_members {
         event
         old_value
         new_value
-    } { 
-        listens for the following events: 
-    } { 
-    }   
+    } {
+        listens for the following events:
+    } {
+    }
 
     #
     # misc procs
     #
 
     ad_proc -public get_community_default_page {} {
-        Returns the user default page to add the portlet to. 
+        Returns the user default page to add the portlet to.
         FIXME Should be a ad_param.
     } {
         return "#dotlrn.club_page_people_title#"
