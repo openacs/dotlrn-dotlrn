@@ -130,7 +130,7 @@ namespace eval dotlrn_members {
     } {
         A helper proc to add the underlying portlet to the given portal. 
         
-        @portal_id 
+        @param portal_id
         @param args ns_set (community_id?)
     } {
         # since this portlet is only added to community portals or portal templates
