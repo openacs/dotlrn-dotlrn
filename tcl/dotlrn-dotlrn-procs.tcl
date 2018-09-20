@@ -15,8 +15,8 @@
 #
 
 ad_library {
-    
-    Procs to set up the core dotLRN portlets. 
+
+    Procs to set up the core dotLRN portlets.
 
     1. the soon-to-be-renamed "dotlrn-main" portlet
     (The thing that lists a users communities on their portal)
@@ -33,18 +33,18 @@ ad_library {
 }
 
 namespace eval dotlrn_dotlrn {
-    
+
     ad_proc portal_element_key {
     } {
         What portlet is this applet associated with?
     } {
-	return "dotlrn-portlet"
+        return "dotlrn-portlet"
     }
 
     ad_proc -public get_pretty_name {
     } {
     } {
-	return "[_ dotlrn-dotlrn.Core_DotLRN_Applets]"
+        return "[_ dotlrn-dotlrn.Core_DotLRN_Applets]"
     }
 
     ad_proc -public my_package_key {
@@ -62,15 +62,15 @@ namespace eval dotlrn_dotlrn {
 
     ad_proc -public add_applet {
     } {
-	Add the applet to dotlrn - one time init - must be repeatable!
+        Add the applet to dotlrn - one time init - must be repeatable!
     } {
         dotlrn_applet::add_applet_to_dotlrn -applet_key [applet_key] -package_key [my_package_key]
     }
 
     ad_proc -public remove_applet {
-	package_id
+        package_id
     } {
-	Remove the applet from dotlrn. 
+        Remove the applet from dotlrn.
     } {
         ad_return_complaint \
             1 \
@@ -78,14 +78,14 @@ namespace eval dotlrn_dotlrn {
     }
 
     ad_proc -public add_applet_to_community {
-	community_id
+        community_id
     } {
-	Add the core dotlrn applets to a specific community
+        Add the core dotlrn applets to a specific community
     } {
         #
         # comm type-specific stuff
         #
-        # we call add_self_to_page again with the 
+        # we call add_self_to_page again with the
         # real comm_id, and it gets overwritten
 
         set portal_id [dotlrn_community::get_portal_id \
@@ -138,14 +138,14 @@ namespace eval dotlrn_dotlrn {
 
         dotlrn_dotlrn::add_portlet_helper $portal_id $args
 
-        # return the empty string 
-	return ""
+        # return the empty string
+        return ""
     }
 
     ad_proc -public remove_applet_from_community {
-	community_id
+        community_id
     } {
-	remove the dotlrn applet from a specific community
+        remove the dotlrn applet from a specific community
     } {
         ad_return_complaint \
             1 \
@@ -153,9 +153,9 @@ namespace eval dotlrn_dotlrn {
     }
 
     ad_proc -public add_user {
-	user_id
+        user_id
     } {
-	Called for one time init when this user is added to dotlrn. 
+        Called for one time init when this user is added to dotlrn.
         Do nothing, since the portal system will copy the dotlrn-main
         portal from the user template. that's set up below
     } {
@@ -171,8 +171,8 @@ namespace eval dotlrn_dotlrn {
     }
 
     ad_proc -public add_user_to_community {
-	community_id
-	user_id
+        community_id
+        user_id
     } {
         Add user to a comm
     } {
@@ -180,26 +180,26 @@ namespace eval dotlrn_dotlrn {
     }
 
     ad_proc -public remove_user_from_community {
-	community_id
-	user_id
+        community_id
+        user_id
     } {
-	Remove a user from a community. Since this applet is not shown 
-        on a user's portal, no action is required here.	
+        Remove a user from a community. Since this applet is not shown
+        on a user's portal, no action is required here.
     } {
         # noop
     }
-	
+
     ad_proc -public add_portlet {
         portal_id
     } {
-        @param portal_id 
+        @param portal_id
     } {
         set community_id 0
         set args [ns_set create]
         ns_set put $args community_id $community_id
 
         set type [dotlrn::get_type_from_portal_id -portal_id $portal_id]
-        
+
         switch $type {
             user {
                 dotlrn_main_portlet::add_self_to_page -portal_id $portal_id
@@ -234,10 +234,10 @@ namespace eval dotlrn_dotlrn {
     }
 
     ad_proc -private add_portlet_helper {
-        portal_id 
-        args        
+        portal_id
+        args
     } {
-        Does the call to add the portlet to the portal. 
+        Does the call to add the portlet to the portal.
         Params for the portlet are sent to this proc by the caller.
     } {
         dotlrn_portlet::add_self_to_page \
@@ -249,8 +249,8 @@ namespace eval dotlrn_dotlrn {
         portal_id
         args
     } {
-        A helper proc to remove the underlying portlet from the given portal. 
-        
+        A helper proc to remove the underlying portlet from the given portal.
+
         @param portal_id
         @param args
     } {
@@ -262,7 +262,7 @@ namespace eval dotlrn_dotlrn {
         new_community_id
     } {
         Clone this applet's content from the old community to the new one.
-        Since there's no data to copy, just add the applet to the new 
+        Since there's no data to copy, just add the applet to the new
         community.
     } {
         ns_log notice "Cloning: [applet_key]"
@@ -274,10 +274,10 @@ namespace eval dotlrn_dotlrn {
         event
         old_value
         new_value
-    } { 
-        listens for the following events: 
-    } { 
-    }   
+    } {
+        listens for the following events:
+    } {
+    }
 
     ad_proc -private get_default_page { portal_type } {
         The pretty name of the page to add the portlet to.
@@ -303,7 +303,7 @@ namespace eval dotlrn_dotlrn {
         }
 
         return $page_name
-    }    
+    }
 }
 
 # Local variables:
