@@ -20,7 +20,7 @@ ad_library {
 
     1. the soon-to-be-renamed "dotlrn-main" portlet
     (The thing that lists a users communities on their portal)
-    2. the "dotlrn" portlet (aka "subgroups" on comm portals)
+    2. the "dotlrn" portlet (a.k.a. "subgroups" on comm portals)
     3. the "dotlrn-admin portlet" (basic group admin)
 
     and experimentally (so we eliminate these 2 applets):
