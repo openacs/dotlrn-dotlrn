@@ -13,6 +13,10 @@ aa_register_case \
         dotlrn_dotlrn::package_key
         dotlrn_dotlrn::my_package_key
         dotlrn_dotlrn::applet_key
+        dotlrn_members::my_package_key
+        dotlrn_members::applet_key
+        dotlrn_members_staff::my_package_key
+        dotlrn_members_staff::applet_key
     } \
     dotlrn_dotlrn__keys {
 
@@ -21,9 +25,13 @@ aa_register_case \
         @author Héctor Romojaro <hector.romojaro@gmail.com>
         @creation-date 2019-09-10
 } {
-    aa_equals "Portal element key" "[dotlrn_dotlrn::portal_element_key]" "dotlrn-portlet"
-    aa_equals "My Package key" "[dotlrn_dotlrn::my_package_key]" "dotlrn-dotlrn"
-    aa_equals "Applet key" "[dotlrn_dotlrn::applet_key]" "dotlrn_dotlrn"
+    aa_equals "Portal element key"  "[dotlrn_dotlrn::portal_element_key]"       "dotlrn-portlet"
+    aa_equals "My Package key"      "[dotlrn_dotlrn::my_package_key]"           "dotlrn-dotlrn"
+    aa_equals "Applet key"          "[dotlrn_dotlrn::applet_key]"               "dotlrn_dotlrn"
+    aa_equals "My Package key"      "[dotlrn_members::my_package_key]"          "dotlrn-dotlrn"
+    aa_equals "Applet key"          "[dotlrn_members::applet_key]"              "dotlrn_members"
+    aa_equals "My Package key"      "[dotlrn_members_staff::my_package_key]"    "dotlrn-dotlrn"
+    aa_equals "Applet key"          "[dotlrn_members_staff::applet_key]"        "dotlrn_members_staff"
 }
 
 # Local variables:
