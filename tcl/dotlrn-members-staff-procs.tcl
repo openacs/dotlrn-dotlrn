@@ -21,26 +21,26 @@
 #
 
 ad_library {
-    
+
     Procs to set up the dotLRN "staff list" applet
-    
+
     @author ben@openforce.net,arjun@openforce.net
 }
 
 namespace eval dotlrn_members_staff {
-    
+
     ad_proc portal_element_key {
     } {
-	Returns the key for the portal element this applet uses
+        Returns the key for the portal element this applet uses
     } {
-	return "dotlrn-members-staff-portlet"
+        return "dotlrn-members-staff-portlet"
     }
 
     ad_proc -public get_pretty_name {
     } {
-	Returns the pretty name of the applet
+        Returns the pretty name of the applet
     } {
-	return "[_ dotlrn-dotlrn.lt_dotLRN_Staff_List_Inf]"
+        return "[_ dotlrn-dotlrn.lt_dotLRN_Staff_List_Inf]"
     }
 
     ad_proc -public my_package_key {
@@ -59,45 +59,45 @@ namespace eval dotlrn_members_staff {
 
     ad_proc -public add_applet {
     } {
-	Add the dotlrn applet to dotlrn - one time init - must be repeatable!
+        Add the dotlrn applet to dotlrn - one time init - must be repeatable!
     } {
         dotlrn_applet::add_applet_to_dotlrn -applet_key [applet_key] -package_key [my_package_key]
     }
 
     ad_proc -public add_applet_to_community {
-	community_id
+        community_id
     } {
-	Add the dotlrn members staff applet to a specific community
+        Add the dotlrn members staff applet to a specific community
     } {
-	set portal_id [dotlrn_community::get_portal_id -community_id $community_id]
-	dotlrn_members_staff_portlet::add_self_to_page \
+        set portal_id [dotlrn_community::get_portal_id -community_id $community_id]
+        dotlrn_members_staff_portlet::add_self_to_page \
             -portal_id $portal_id \
             -community_id $community_id
 
-	return ""
+        return ""
     }
 
     ad_proc -public remove_applet_from_community {
-	community_id
+        community_id
     } {
         removes the dotlrn members staff applet from a community
     } {
-	set portal_id [dotlrn_community::get_portal_id -community_id $community_id]
-	dotlrn_members_staff_portlet::remove_self_from_page -portal_id $portal_id 
+        set portal_id [dotlrn_community::get_portal_id -community_id $community_id]
+        dotlrn_members_staff_portlet::remove_self_from_page -portal_id $portal_id
     }
 
     ad_proc -public remove_applet {
-	community_id
-	package_id
+        community_id
+        package_id
     } {
-	remove the applet from the community
+        remove the applet from the community
     } {
     }
 
     ad_proc -private add_user {
-	user_id
+        user_id
     } {
-	Called for one time init when this user is added to dotlrn
+        Called for one time init when this user is added to dotlrn
     } {
         # noop
     }
@@ -110,26 +110,26 @@ namespace eval dotlrn_members_staff {
     }
 
     ad_proc -private add_user_to_community {
-	community_id
-	user_id
+        community_id
+        user_id
     } {
-	Called when a user is added to a spceific dotlrn community
+        Called when a user is added to a spceific dotlrn community
     } {
     }
 
     ad_proc -private remove_user_from_community {
-	community_id
-	user_id
+        community_id
+        user_id
     } {
-	Remove a user from a community
+        Remove a user from a community
     } {
     }
 
     ad_proc -public add_portlet {
         args
     } {
-        A helper proc to add the underlying portlet to the given portal. 
-        
+        A helper proc to add the underlying portlet to the given portal.
+
         @param args a list-ified array of args defined in add_applet_to_community
     } {
         ns_log notice "** Error in [get_pretty_name]: 'add_portlet' not implemented!"
@@ -140,8 +140,8 @@ namespace eval dotlrn_members_staff {
     ad_proc -public remove_portlet {
         args
     } {
-        A helper proc to remove the underlying portlet from the given portal. 
-        
+        A helper proc to remove the underlying portlet from the given portal.
+
         @param args a list-ified array of args defined in remove_applet_from_community
     } {
         ns_log notice "** Error in [get_pretty_name]: 'remove_portlet' not implemented!"
@@ -163,10 +163,10 @@ namespace eval dotlrn_members_staff {
         event
         old_value
         new_value
-    } { 
-        listens for the following events: 
-    } { 
-    }   
+    } {
+        listens for the following events:
+    } {
+    }
 
 }
 
