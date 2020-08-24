@@ -34,6 +34,21 @@ aa_register_case \
     aa_equals "Applet key"          "[dotlrn_members_staff::applet_key]"        "dotlrn_members_staff"
 }
 
+aa_register_case -procs {
+        dotlrn_dotlrn::get_pretty_name
+        dotlrn_members::get_pretty_name
+        dotlrn_members_staff::get_pretty_name
+    } -cats {
+        api
+        production_safe
+    } dotlrn_dotlrn__names {
+        Test diverse name procs.
+} {
+    aa_equals "Pretty name"                 "[dotlrn_dotlrn::get_pretty_name]" "[_ dotlrn-dotlrn.Core_DotLRN_Applets]"
+    aa_equals "Members pretty name"         "[dotlrn_members::get_pretty_name]" "[_ dotlrn-dotlrn.Group_Members_Info]"
+    aa_equals "Members staff pretty name"   "[dotlrn_members_staff::get_pretty_name]" "[_ dotlrn-dotlrn.lt_dotLRN_Staff_List_Inf]"
+}
+
 # Local variables:
 #    mode: tcl
 #    tcl-indent-level: 4
