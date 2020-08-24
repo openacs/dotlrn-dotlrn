@@ -152,7 +152,7 @@ namespace eval dotlrn_dotlrn {
             "[applet_key] remove_applet_from_community not implemented!"
     }
 
-    ad_proc -public add_user {
+    ad_proc -private add_user {
         user_id
     } {
         Called for one time init when this user is added to dotlrn.
@@ -162,7 +162,7 @@ namespace eval dotlrn_dotlrn {
         # noop
     }
 
-    ad_proc -public remove_user {
+    ad_proc -private remove_user {
         user_id
     } {
         remove a user from dotlrn
@@ -170,7 +170,7 @@ namespace eval dotlrn_dotlrn {
         # noop
     }
 
-    ad_proc -public add_user_to_community {
+    ad_proc -private add_user_to_community {
         community_id
         user_id
     } {
@@ -179,7 +179,7 @@ namespace eval dotlrn_dotlrn {
         # noop
     }
 
-    ad_proc -public remove_user_from_community {
+    ad_proc -private remove_user_from_community {
         community_id
         user_id
     } {
@@ -269,7 +269,7 @@ namespace eval dotlrn_dotlrn {
         return [add_applet_to_community $new_community_id]
     }
 
-    ad_proc -public change_event_handler {
+    ad_proc -private change_event_handler {
         community_id
         event
         old_value
