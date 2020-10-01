@@ -64,11 +64,10 @@ namespace eval dotlrn_members {
         dotlrn_applet::add_applet_to_dotlrn -applet_key [applet_key] -package_key [my_package_key]
     }
 
-    ad_proc -public remove_applet {
-        package_id
+    ad_proc -public remove_applet {} {
+        Remove the applet from dotlrn
     } {
-        remove the applet from dotlrn
-    } {
+        dotlrn_applet::remove_applet_from_dotlrn -applet_key [applet_key]
     }
 
     ad_proc -public add_applet_to_community {
