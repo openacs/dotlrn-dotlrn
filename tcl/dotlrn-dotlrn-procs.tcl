@@ -57,6 +57,7 @@ namespace eval dotlrn_dotlrn {
 
     ad_proc -public applet_key {
     } {
+        @return the applet key
     } {
         return "dotlrn_dotlrn"
     }
