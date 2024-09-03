@@ -64,11 +64,10 @@ namespace eval dotlrn_members {
         dotlrn_applet::add_applet_to_dotlrn -applet_key [applet_key] -package_key [my_package_key]
     }
 
-    ad_proc -public remove_applet {
-        package_id
+    ad_proc -public remove_applet {} {
+        Remove the applet from dotlrn
     } {
-        remove the applet from dotlrn
-    } {
+        dotlrn_applet::remove_applet_from_dotlrn -applet_key [applet_key]
     }
 
     ad_proc -public add_applet_to_community {
@@ -96,28 +95,28 @@ namespace eval dotlrn_members {
         dotlrn_members::remove_portlet $portal_id ""
     }
 
-    ad_proc -public add_user {
+    ad_proc -private add_user {
         user_id
     } {
     } {
         # noop
     }
 
-    ad_proc -public remove_user {
+    ad_proc -private remove_user {
         user_id
     } {
     } {
         # noop
     }
 
-    ad_proc -public add_user_to_community {
+    ad_proc -private add_user_to_community {
         community_id
         user_id
     } {
     } {
     }
 
-    ad_proc -public remove_user_from_community {
+    ad_proc -private remove_user_from_community {
         community_id
         user_id
     } {
@@ -184,7 +183,7 @@ namespace eval dotlrn_members {
         return [dotlrn_members::add_applet_to_community $new_community_id]
     }
 
-    ad_proc -public change_event_handler {
+    ad_proc -private change_event_handler {
         community_id
         event
         old_value
@@ -200,13 +199,13 @@ namespace eval dotlrn_members {
 
     ad_proc -public get_community_default_page {} {
         Returns the user default page to add the portlet to.
-        FIXME Should be a ad_param.
+        FIXME Should be an ad_param.
     } {
         return "#dotlrn.club_page_people_title#"
     }
 
     ad_proc -public get_subcomm_default_page {} {
-        FIXME Should be a ad_param.
+        FIXME Should be an ad_param.
     } {
         return "#dotlrn.subcomm_page_info_title#"
     }
